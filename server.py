@@ -9,6 +9,9 @@ import threading
 import keyboard
 
 
+def map(num, oldMin, oldMax, newMin, newMax): 
+    return (num-oldMin)/(oldMax-oldMin)*(newMax-newMin)+newMin
+
 def listenting():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0', 8888))
@@ -36,8 +39,11 @@ def stream(client_socket, client_address):
 def getData(client_socket):
     while True:
         data = client_socket.recv(1024)
-        if data:
+        if len(data) > 1:
             print(struct.unpack("QQ", data))
+        else:
+            print(data)
+
 
 if __name__=="__main__":
     listenting()
