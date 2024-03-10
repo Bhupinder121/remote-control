@@ -55,7 +55,6 @@ def getVideo():
         frame_data = data[:msg_size]
         data = data[msg_size:]
         frame = pickle.loads(frame_data)
-
         cv2.imshow('Client', frame)
         cv2.setMouseCallback("Client", mouse_click)
         if cv2.waitKey(1) & 0xFF == ord('q'): 
